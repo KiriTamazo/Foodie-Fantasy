@@ -1,13 +1,13 @@
 import products from "@/assets/data/products";
-import { Image, StyleSheet, Text, View } from "react-native";
+import ProductListItem from "@/src/components/pages/ProductListItem";
+import { StyleSheet, View } from "react-native";
 
-const product = products[1];
 export default function TabOneScreen() {
   return (
-    <View className="bg-white p-5 rounded">
-      <Image source={{ uri: product?.image }} className="w-full aspect-[1]" />
-      <Text className="font-semibold text-lg">{product?.name}</Text>
-      <Text>{product?.price}</Text>
+    <View>
+      {products?.map((product) => (
+        <ProductListItem product={product} key={product?.id} />
+      ))}
     </View>
   );
 }
