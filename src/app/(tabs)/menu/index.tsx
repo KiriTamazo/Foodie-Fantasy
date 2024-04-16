@@ -1,5 +1,5 @@
 import products from "@/assets/data/products";
-import ProductListItem from "@/src/components/pages/ProductListItem";
+import ProductListItem from "@/src/components/global/ProductListItem";
 import { FlatList, View } from "react-native";
 
 export default function TabOneScreen() {

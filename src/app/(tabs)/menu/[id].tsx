@@ -1,17 +1,20 @@
 import products from "@/assets/data/products";
-import Button from "@/src/components/ui/button";
+import Button from "@/src/components/ui/Button";
+import { useCartStore } from "@/src/stores/cartStore";
+import { PizzaSize } from "@/src/types";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
-const sizes = ["s", "m", "l", "xl"];
+const sizes = ['S', 'M', 'L', 'XL'];
 const ProductDetail = () => {
     const { id } = useLocalSearchParams();
     const product = products.find((product) => product.id.toString() === id);
-    const [selectedSize, setSelectedSize] = useState("s");
+    const [selectedSize, setSelectedSize] = useState<PizzaSize>("S");
+    const addToCart = useCartStore((state) => state.addToCart)
 
     if (!product) return <Text>Product Not Found</Text>;
     const handleAddToCart = () => {
-        console.log('click', selectedSize)
+        addToCart(product, selectedSize)
     }
     return (
         <View className="bg-white flex-1 p-[10px]">
@@ -25,8 +28,8 @@ const ProductDetail = () => {
             <View className="flex-row justify-around gap-4 my-[10px]">
                 {sizes.map((size) => (
                     <Pressable
-                        key-={size}
-                        onPress={() => setSelectedSize(size)}
+                        key={size}
+                        onPress={() => setSelectedSize(size as PizzaSize)}
                         className={`${selectedSize === size ? 'bg-gray-200' : ''} w-[50px] aspect-[1] items-center justify-center rounded-full`}
                     >
                         <Text
