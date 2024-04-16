@@ -1,4 +1,5 @@
 import products from "@/assets/data/products";
+import Button from "@/src/components/ui/button";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
@@ -9,7 +10,9 @@ const ProductDetail = () => {
     const [selectedSize, setSelectedSize] = useState("s");
 
     if (!product) return <Text>Product Not Found</Text>;
-
+    const handleAddToCart = () => {
+        console.log('click', selectedSize)
+    }
     return (
         <View className="bg-white flex-1 p-[10px]">
             <Stack.Screen
@@ -22,6 +25,7 @@ const ProductDetail = () => {
             <View className="flex-row justify-around gap-4 my-[10px]">
                 {sizes.map((size) => (
                     <Pressable
+                        key-={size}
                         onPress={() => setSelectedSize(size)}
                         className={`${selectedSize === size ? 'bg-gray-200' : ''} w-[50px] aspect-[1] items-center justify-center rounded-full`}
                     >
@@ -33,7 +37,10 @@ const ProductDetail = () => {
                     </Pressable>
                 ))}
             </View>
-            <Text className="text-lg font-bold">${product.price}</Text>
+            <Text className="text-lg font-bold mt-auto">
+                ${product.price}
+            </Text>
+            <Button onPress={handleAddToCart} text='add to cart' />
         </View>
     );
 };
