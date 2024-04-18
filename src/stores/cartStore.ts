@@ -45,7 +45,20 @@ export const useCartStore = create<CartStoreStateProps & CartStoreActionProps>(
       });
     },
     updateQuantity: (itemId, amount) => {
-      
+      set((state) => {
+        // first update quantity or if quantity is less than 1 remove from items
+        const updatedQuantity = state.items
+          .map((item) => {
+            return item.id === itemId
+              ? item.quantity === 1 && amount < 0
+                ? null
+                : { ...item, quantity: item.quantity + amount }
+              : item;
+          })
+          .filter((item) => item !== null) as CartItem[];
+
+        return { items: updatedQuantity };
+      });
     },
   })
 );
