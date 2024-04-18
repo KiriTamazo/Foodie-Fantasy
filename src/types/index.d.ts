@@ -4,24 +4,24 @@ export type ProductsProps = {
   image: string;
   price: number;
 };
-export type PizzaSize = 'S' | 'M' | 'L' | 'XL';
+export type PizzaSize = "S" | "M" | "L" | "XL";
 
 export type CartItem = {
   id: string;
-  product: Product;
+  product: ProductsProps;
   product_id: number;
   size: PizzaSize;
   quantity: number;
 };
 
 export const OrderStatusList: OrderStatus[] = [
-  'New',
-  'Cooking',
-  'Delivering',
-  'Delivered',
+  "New",
+  "Cooking",
+  "Delivering",
+  "Delivered",
 ];
 
-export type OrderStatus = 'New' | 'Cooking' | 'Delivering' | 'Delivered';
+export type OrderStatus = "New" | "Cooking" | "Delivering" | "Delivered";
 
 export type Order = {
   id: number;
