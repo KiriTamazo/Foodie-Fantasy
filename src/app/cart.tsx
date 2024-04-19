@@ -4,17 +4,15 @@ import { useCartStore } from '../stores/cartStore'
 import CartListItem from '../components/global/CartListItem'
 import Button from '../components/ui/Button'
 import { ScrollView } from 'react-native'
-import { Redirect, useNavigation, useRouter } from 'expo-router'
-import { useEffect } from 'react'
+import { useRouter } from 'expo-router'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 const CartScreen = () => {
     const cartItems = useCartStore((state) => state.items)
     const totalPrice = useCartStore((state) => state.totalPrice())
     const router = useRouter()
-    // if (cartItems.length < 1) {
-    //     router.replace('/(tabs)/menu')
-    // }
-    console.log(cartItems.length)
+    if (cartItems.length < 1) {
+        router.replace('/(tabs)/menu')
+    }
     return (
         <>
             <View className='flex-1 px-4 py-2 '>
