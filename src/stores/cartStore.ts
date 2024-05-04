@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { CartItem, PizzaSize, ProductsProps } from "../types";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type CartStoreStateProps = {
@@ -64,12 +63,10 @@ export const useCartStore = create<
           const updatedQuantity = state.items
             .map((item: CartItem) => {
               return item.id === itemId
-                ? item.quantity === 1 && amount < 0
-                  ? null
-                  : { ...item, quantity: item.quantity + amount }
+                ? { ...item, quantity: item.quantity + amount }
                 : item;
             })
-            .filter((item) => item !== null) as CartItem[];
+            .filter((item) => item.quantity > 0) as CartItem[];
 
           return { items: updatedQuantity };
         });
