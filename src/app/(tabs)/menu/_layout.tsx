@@ -1,15 +1,14 @@
 import Colors from '@/src/constants/Colors'
 import { useIsAdmin } from '@/src/stores/authStore'
-import { Feather, FontAwesome6 } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 import { Link, Stack } from 'expo-router'
 import { Pressable, StyleSheet } from 'react-native'
 
 const AdminMenuLayout = () => {
     return (
-        <Stack>
+        <Stack screenOptions={{ headerTitleAlign: 'center' }}>
             <Stack.Screen name='index' options={{
                 title: 'Menu',
-                headerTitleAlign: 'center',
                 headerRight: () => (
                     <Link href="/(tabs)/menu/create" asChild>
                         <Pressable>
@@ -30,7 +29,6 @@ const AdminMenuLayout = () => {
             <Stack.Screen name='[id]' options={
                 {
                     title: 'Menu',
-                    headerTitleAlign: 'center',
                     headerRight: () => (
                         <Link href="/cart" asChild>
                             <Pressable>
@@ -47,6 +45,9 @@ const AdminMenuLayout = () => {
                     ),
                 }
             } />
+            <Stack.Screen name='create'
+                options={{ title: "Create Product" }}
+            />
         </Stack>
     )
 }
