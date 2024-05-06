@@ -1,9 +1,11 @@
 import products from "@/assets/data/products";
 import Button from "@/src/components/ui/Button";
+import Colors from "@/src/constants/Colors";
 import { useIsAdmin } from "@/src/stores/authStore";
 import { useCartStore } from "@/src/stores/cartStore";
 import { PizzaSize } from "@/src/types";
-import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import { Feather } from "@expo/vector-icons";
+import { Link, Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 const sizes = ['S', 'M', 'L', 'XL'];
@@ -24,6 +26,28 @@ const ProductDetail = () => {
     }
     return (
         <View className="bg-white flex-1 p-[10px]">
+            {admin ? <Stack.Screen options={
+                {
+                    title: 'Menu',
+                    headerRight: () => (
+                        <Link href={`/menu/create?id=${id}`} asChild>
+                            <Pressable>
+                                {({ pressed }) => (
+                                    <Feather
+                                        name="edit"
+                                        size={25}
+                                        style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                                        color={Colors.light.tint}
+                                    />
+                                )}
+                            </Pressable>
+                        </Link>
+                    ),
+                }
+            } /> :
+                null
+            }
+
             <Stack.Screen
                 options={{
                     title: product.name,

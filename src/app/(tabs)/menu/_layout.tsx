@@ -26,28 +26,7 @@ const AdminMenuLayout = () => {
                 )
             }}
             />
-            <Stack.Screen name='[id]' options={
-                {
-                    title: 'Menu',
-                    headerRight: () => (
-                        <Link href="/cart" asChild>
-                            <Pressable>
-                                {({ pressed }) => (
-                                    <Feather
-                                        name="edit"
-                                        size={25}
-                                        style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                                        color={Colors.light.tint}
-                                    />
-                                )}
-                            </Pressable>
-                        </Link>
-                    ),
-                }
-            } />
-            <Stack.Screen name='create'
-                options={{ title: "Create Product" }}
-            />
+          
         </Stack>
     )
 }
