@@ -10,9 +10,9 @@ const CartScreen = () => {
     const cartItems = useCartStore((state) => state.items)
     const totalPrice = useCartStore((state) => state.totalPrice())
     const router = useRouter()
-    if (cartItems.length < 1) {
-        router.replace('/(tabs)/menu')
-    }
+    // if (cartItems.length < 1) {
+    //     router.replace('/(tabs)/menu')
+    // }
     return (
         <>
             <View className='flex-1 px-4 py-2 '>

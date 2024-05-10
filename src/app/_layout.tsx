@@ -9,6 +9,8 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { useColorScheme } from "@/components/useColorScheme.web";
+import Button from "../components/ui/Button";
+import { useAuthStore } from "../stores/authStore";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -49,6 +51,8 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const auth = useAuthStore(state => state.auth)
+  const toggleUser = useAuthStore(state => state.toggleUser)
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -60,6 +64,7 @@ function RootLayoutNav() {
           headerTitleAlign: "center",
         }} />
       </Stack>
+      <Button onPress={toggleUser} className="absolute top-10 left-5" text={auth}></Button>
     </ThemeProvider>
   );
 }

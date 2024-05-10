@@ -1,32 +1,64 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import Colors from '@/src/constants/Colors'
+import { useIsAdmin } from '@/src/stores/authStore'
+import { Feather } from '@expo/vector-icons'
 import { Link, Stack } from 'expo-router'
 import { Pressable, StyleSheet } from 'react-native'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
-const MenuLayout = () => {
+
+const AdminMenuLayout = () => {
     return (
-        <Stack screenOptions={{
-            headerTitleAlign: 'center',
-            headerRight: () => (
-                <Link href="/cart" asChild>
-                    <Pressable>
-                        {({ pressed }) => (
-                            <MaterialCommunityIcons
-                                name="shopping-outline"
-                                className='fill-primary-500'
-                                size={25}
-                                style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                            />
-                        )}
-                    </Pressable>
-                </Link>
-            ),
-
-        }}>
+        <Stack screenOptions={{ headerTitleAlign: 'center' }}>
             <Stack.Screen name='index' options={{
-                title: "Menu"
-            }} />
+                title: 'Menu',
+                headerRight: () => (
+                    <Link href="/(tabs)/menu/create" asChild>
+                        <Pressable>
+                            {({ pressed }) => (
+                                <Feather
+                                    name={"plus"}
+                                    size={25}
+                                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                                    color={Colors.light.tint}
 
+                                />
+                            )}
+                        </Pressable>
+                    </Link>
+                )
+            }}
+            />
+          
         </Stack>
+    )
+}
+const UserMenuLayout = () => {
+    return (<Stack screenOptions={{
+        headerTitleAlign: 'center',
+        headerRight: () => (
+            <Link href="/cart" asChild>
+                <Pressable>
+                    {({ pressed }) => (
+                        <Feather
+                            name="shopping-bag"
+                            size={25}
+                            color={Colors.light.tint}
+                            style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                        />
+                    )}
+                </Pressable>
+            </Link>
+        ),
+
+    }} />)
+}
+
+const MenuLayout = () => {
+    const admin = useIsAdmin()
+    console.log(admin)
+
+
+
+    return (
+        admin ? <AdminMenuLayout /> : <UserMenuLayout />
     )
 }
 export default MenuLayout
