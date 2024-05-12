@@ -26,7 +26,6 @@ const AdminMenuLayout = () => {
                 )
             }}
             />
-          
         </Stack>
     )
 }

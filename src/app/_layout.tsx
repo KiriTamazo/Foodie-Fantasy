@@ -56,15 +56,20 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack screenOptions={{
+        headerTitleAlign: 'center'
+      }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="cart" options={{
           title: "Cart",
           presentation: "modal",
           headerTitleAlign: "center",
         }} />
+        <Stack.Screen name="(auth)" options={{
+          headerShown: false
+        }} />
       </Stack>
-      <Button onPress={toggleUser} className="absolute top-10 left-5" text={auth}></Button>
+      <Button onPress={toggleUser} className="absolute  top-20 left-5" text={auth}></Button>
     </ThemeProvider>
   );
 }

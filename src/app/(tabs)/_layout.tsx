@@ -1,5 +1,6 @@
 import React from "react";
-import { MaterialCommunityIcons } from '@expo/vector-icons'; import { Link, Tabs } from "expo-router";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Link, Tabs } from "expo-router";
 
 import Colors from "@/src/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
@@ -7,7 +8,7 @@ import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { useIsAdmin } from "@/src/stores/authStore";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
+export function TabBarIcon(props: {
   name: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
   color: string;
 }) {
