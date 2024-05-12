@@ -52,10 +52,6 @@ const UserMenuLayout = () => {
 
 const MenuLayout = () => {
     const admin = useIsAdmin()
-    console.log(admin)
-
-
-
     return (
         admin ? <AdminMenuLayout /> : <UserMenuLayout />
     )
